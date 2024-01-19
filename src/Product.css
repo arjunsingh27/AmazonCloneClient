@@ -9,6 +9,8 @@
     /* max-height: 400px;
     max-width: 100px; */
     background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    filter: drop-shadow(5px 5px 10px rgb(0, 0, 0));
     z-index: 1;
 }
 .product__rating{

@@ -1,9 +1,10 @@
 import React from "react";
 import Product from "../Product";
 import "../Home.css";
-import itemdetails from "./itemdetails.js"; // Adjust the path relative to Home.js file
+import itemdetails from "./itemdetails.js"; 
 
 function Home() {
+  const newitemdetails = itemdetails.slice(0,3);
   return (
     <div className="home">
       <div className="home__container">
@@ -13,23 +14,9 @@ function Home() {
           alt="amazon banner"
         />
         <div className="home__row">
-          <Product
-            title="Fastrack"
-            price={11.96}
-            rating={5}
-            image="https://m.media-amazon.com/images/I/51EiXZQZcJL._AC_UL640_FMwebp_QL65_.jpg"
-          />
-          <Product
-            title="Fastrack"
-            price={11.96}
-            rating={5}
-            image="https://m.media-amazon.com/images/I/61FFBTzKiUL._AC_UL640_FMwebp_QL65_.jpg"
-          />
-        </div>
-        <div className="home__row">
-          {itemdetails.map((item) => (
+          {newitemdetails.map((item) => (
             <Product
-              key={item.id} // Unique key for each Product
+              key={item.id}  
               id={item.id}
               title={item.title}
               price={item.price}
@@ -38,26 +25,7 @@ function Home() {
             />
           ))}
         </div>
-        <div className="home__row">
-          <Product
-            title=" Fastrack"
-            price={11.96}
-            rating={5}
-            image="https://m.media-amazon.com/images/I/51THPLzdxzL._AC_UL640_FMwebp_QL65_.jpg"
-          />
-          <Product
-            title="Fastrack"
-            price={20}
-            rating={5}
-            image="https://m.media-amazon.com/images/I/61T+tL7zfvL._AC_UL640_FMwebp_QL65_.jpg"
-          />
-          <Product
-            title=" Fastrack"
-            price={11.96}
-            rating={5}
-            image="https://m.media-amazon.com/images/I/51CJr2XU1HL._AC_UL640_FMwebp_QL65_.jpg"
-          />
-        </div>
+        
       </div>
     </div>
   );

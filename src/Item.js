@@ -2,14 +2,14 @@ import React from "react";
 import "./Item.css";
 const { useStateValue } = require("./StateProvider");
 
-function Item({ title, image, price, rating }) {
+function Item({ id ,title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
 
   const removefromBasket = () => {
-    // Dispatch the action to remove the item from the basket
+     
     dispatch({
       type: "REMOVE_FROM_BASKET",
-      id: basket.id, // Assuming each item in the basket has a unique identifier
+      id:id, 
     });
   };
 
