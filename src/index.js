@@ -3,20 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { initialState } from './reducer';
- 
 import { StateProvider } from './StateProvider';
 import reducer from './reducer';
-import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { BrowserRouter } from 'react-router-dom';
 
- 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter> 
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </StateProvider>
-  </BrowserRouter>
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <App />
+      </StateProvider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
-
-// reportWebVitals();
