@@ -12,7 +12,7 @@ function Checkout() {
       <div className='checkout__left'>
         <img className='checkout__ad' src='https://images.unsplash.com/photo-1573655349936-de6bed86f839?q=80&w=2520&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' alt='amazon ad' />
         <div>
-          <h3>Hello, {user?.email.split("@")[0]}</h3>
+          <h3>Hello, {user?.email}</h3>
           <h2 className='checkout__title'>Your Shopping Basket</h2>
         </div>
         <div className='checkout__basket'>
