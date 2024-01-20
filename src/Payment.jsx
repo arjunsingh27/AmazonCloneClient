@@ -43,6 +43,15 @@ const PaymentLayout = styled.div`
   button:hover {
     background-color: #ddb347;
   }
+  .alert {
+    margin-top:10px;
+    width: 100%;
+    display: flex;
+    font-size:2rem;
+    justify-content: center;
+   
+}
+
   
   
 `;
@@ -102,6 +111,7 @@ const Payment = () => {
   return (
     <>
       <PaymentLayout>
+      <p className="alert">This web is in building phase so don't make any mayment</p>
         <div className="payment">
           <div className="payment_container">
             <div className="payment_address">
