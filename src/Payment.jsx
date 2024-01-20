@@ -5,6 +5,7 @@ import Item from "./Item";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
+import "./Payment.css";
 const PaymentLayout = styled.div`
   margin-left: 50px;
 
@@ -12,24 +13,38 @@ const PaymentLayout = styled.div`
     max-height: 20vh;
     display: flex;
     height: 100px;
-    ${"" /* background-color:red; */}
+    
   }
-  .payment_address > h3,
-  p {
-    padding: 20px 0px 0px 40px;
-  }
+ 
   .review_item {
     max-height: 60vh;
-    overflow-x: scroll;
+    overflow-y: scroll;
   }
 
-  .payment_method {
-    max-hight: 20vh;
+ 
+  
+  .pricecontainer > p {
+    margin-top:10px;
+    font-size: 1rem;
+    font-weight: 400;
   }
-  .payment_card_container {
-    width: 400px;
-    height: 200px;
+   button {
+    left: 1px;
+    background-color: #f0c14b;
+    border: 1px solid #a88734;
+    padding: 8px 15px;
+    color: #111;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top:10px;
   }
+  
+  button:hover {
+    background-color: #ddb347;
+  }
+  
+  
 `;
 
 const Payment = () => {
@@ -45,42 +60,39 @@ const Payment = () => {
   const [disabled, setDisabled] = useState(true);
 
   const [clientSecret, setClientSecret] = useState(true);
-  const history= useHistory();
-  
+  const history = useHistory();
+
   useEffect(() => {
     const getClientSecret = async () => {
       const response = await axios({
         method: "post",
         url: `payments/${calculateSubtotal()}`,
       });
-      setClientSecret(response.data.clientSecret)
-
-    }
+      setClientSecret(response.data.clientSecret);
+    };
   }, [basket]);
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setProcessing(true);
-    const payload = await stripe.confirmCardPayment(clientSecret,{
-      payment_method:{
-      card: elements.getElement(CardElement)
-      }
-    }).then(({paymentIntent})=>{
-      setSucceded(true);
-      setError(null)
-      setProcessing(false)
-      history.replaceState('/order')
-    })
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        setSucceded(true);
+        setError(null);
+        setProcessing(false);
+        history.replaceState("/order");
+      });
   };
-
 
   const handleChange = (event) => {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   };
-
 
   const calculateSubtotal = () => {
     const subtotal = basket.reduce((amount, item) => item.price + amount, 0);
@@ -93,13 +105,11 @@ const Payment = () => {
         <div className="payment">
           <div className="payment_container">
             <div className="payment_address">
-              <h3>Delevery Addresss:</h3>
-              <p>{user?.email.slice(0, user?.email.indexOf("@")) || "guest"}</p>
-
-              <p>Lorem ipsum dolor sit amet, ab corporis modi imp </p>
+              <h3 className="delevery_address">Delevery Addresss:</h3>
+              <p> 101 Independence Avenue, S.E.Washington, D.C. 20559-6000</p>
             </div>
-            <h1>Review Item For Delevery</h1>
             <div className="review_item">
+            <h3>Review Item For Delevery</h3>
               {basket.map((e) => (
                 <Item
                   id={e.id}
@@ -111,12 +121,17 @@ const Payment = () => {
               ))}
             </div>
             <div className="payment_method">
-              <h1>Payment Method</h1>
+              <h3>Payment Method</h3>
               <div className="payment_card_container">
                 <form onSubmit={handleSubmit}>
-                  <CardElement onChange={handleChange} />
+                  <div className="CardElementContainer">
+                    <CardElement
+                      className="CardElement"
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className="pricecontainer">
-                    Pay${calculateSubtotal()}
+                    <p>Pay$ {calculateSubtotal()}</p>
                   </div>
                   <button disabled={processing || disabled || succeeded}>
                     <span>{processing ? <p> Processing </p> : "Buy Now"} </span>

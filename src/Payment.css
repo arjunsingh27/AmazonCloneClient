@@ -1,0 +1,33 @@
+ 
+
+.CardElementContainer {
+   width: 80%;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .CardElement {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .CardElement:focus {
+    border-color: #007bff;
+  }
+.payment_address{
+    margin-top: 20px;
+}
+.payment_address > p{
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: 20px;
+}
