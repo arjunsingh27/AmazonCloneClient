@@ -1,7 +1,7 @@
 
 # Amazon Clone Client
 
-This Amazon clone website was built by following a tutorial on YouTube from Clever Programmer. I encountered several challenges during the development process and addressed each issue systematically.
+This Amazon clone website was built using React Firebase and other top edge technology . I encountered several challenges during the development process and addressed each issue systematically.
 
 ## Installation
 ### Clone the Repository
