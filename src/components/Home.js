@@ -1,7 +1,6 @@
 import React from "react";
 import Product from "../Product";
 import "../Home.css";
-import itemdetails from "./itemdetails.js"; 
 import { useEffect, useState } from "react";
 import axiosInstance from "../axios";
 
