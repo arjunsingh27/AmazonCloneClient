@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL:'http://localhost:5002'
+    baseURL:'https://amazoncloneserver-g8i7.onrender.com'
 });
 
 export default instance;
+//http://localhost:5002
